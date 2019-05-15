@@ -2,7 +2,7 @@
 {
     public interface IExcel
     {
-        bool SaveExcel(string FileName);
-        bool LoadExcel(string FileName);
+        bool SaveExcel(string FileName, string SheetName);
+        bool LoadExcel(string FileName,string SheetName);
     }
 }
