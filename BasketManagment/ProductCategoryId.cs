@@ -2,9 +2,9 @@
 {
     public enum ProductCategoryId
     {
-        shirt = 1,
-        shoes = 2,
-        jeans = 3,
-        bags = 4
+        Shirt = 1,
+        Shoes = 2,
+        Jeans = 3,
+        Bags = 4
     }
 }

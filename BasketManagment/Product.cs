@@ -1,6 +1,6 @@
 ﻿namespace BasketManagment
 {
-    class Product
+    public class Product
     {
 
         public int Id { get; set; }
@@ -19,7 +19,7 @@
 
         public override string ToString()
         {
-            return $"Id: {Id}\t, Name: {Name}\t, Price: {Price}\t, Category: {Category.ToString()} ";
+            return $"{Id}:{Name}:{Price}:{Category.ToString()}";
         }
     }
 }
