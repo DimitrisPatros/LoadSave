@@ -22,7 +22,7 @@ namespace BasketManagment
                         var name = item[1];
                         var Price = decimal.Parse(item[2]);
                         var category = Enum.Parse<ProductCategoryId>(item[3]);
-                        basket.Cart.Add(new Product(id, name, Price, category));
+                        basket.Cart.Add(new Product());
                     }
                 }
             }
