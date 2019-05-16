@@ -21,6 +21,8 @@ namespace BasketManagment
             modelBuilder.Entity<Product>();
         }
     }
+
+    //run in supershell 
     //dotnet ef migrations add initial-create
     //dotnet ef database update
 }
