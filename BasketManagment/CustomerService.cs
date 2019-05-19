@@ -16,7 +16,7 @@ namespace BasketManagment
                     var query = context.Set<Customer>().SingleOrDefault(c => c.Email == email);
                     if (query != null)
                     {
-                        query.Baskets.Add(basket.BasketId);
+                        query.Baskets.BasketsId.Add(basket);
                         context.Add(basket);
                         context.SaveChanges();
                     }
@@ -67,7 +67,7 @@ namespace BasketManagment
                     if (query != null)
                     {
                         var basketRemover = context.Set<Basket>().SingleOrDefault(b => b.BasketId == basketId);
-                        query.Baskets.Remove(basketId);
+                        query.Baskets.BasketsId.Remove(basketRemover);
                         context.Remove(basketRemover);
                         context.SaveChanges();
                     }
