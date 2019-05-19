@@ -5,8 +5,10 @@ using System.Text;
 
 namespace BasketManagment
 {
-    class OrderManagmentDbContext:DbContext
+    class OrderManagmentDbContext : DbContext
     {
+        internal readonly object customer;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
@@ -19,6 +21,8 @@ namespace BasketManagment
 
             modelBuilder.Entity<Basket>();
             modelBuilder.Entity<Product>();
+            modelBuilder.Entity<Customer>().HasIndex(u => u.Name).IsUnique();
+
         }
     }
 

@@ -8,26 +8,20 @@ namespace BasketManagment
     {
         public static void Main(string[] args)
         {
-            var context = new OrderManagmentDbContext();
+            var service = new CustomerService();
 
-            var baskets = context.Set<Basket>().Include(b => b.Cart).First();
+            //register new customers
+            var customer01 = service.Register("talou@hotmail.com", "toulk", "tade efi",new DateTime(1978, 5, 25));
+            var customer02 = service.Register("mpampis@hotmail.com", "Mpampis", "Marousi", new DateTime(1996, 8, 2));
+            Console.ReadLine();
+            ////update current customers
+            //service.Update("talou@hotmail.com", "toulkas", "kifisia", new DateTime(1978, 5, 25), true,"toulkas@gmail.com");
 
-            context.Remove(baskets.Cart.First());
+            ////delete customer
+            //service.Delete("mpampis@hotmail.com");
 
-            var totalAmount = context.Set<Product>()
-                .Where(p => p.Category==ProductCategoryId.Shoes)
-                .Sum(p=> p.Price);
-            Console.WriteLine(totalAmount);
+            ////add baskets to a customer
 
-
-            //var Products = context.Set<Product>().ToList();
-            // var baskets = context.Set<Basket>().Include(b => b.Cart).ToList();
-            //foreach (var p in Products)
-            //{
-            //    Console.WriteLine(p);
-            //}
-
-            //var basket = new Basket();
             //var basket01 = new Basket();
             //var basket02 = new Basket();
             //var p1 = new Product()
@@ -54,9 +48,33 @@ namespace BasketManagment
             //basket02.Cart.Add(p1);
             //basket02.Cart.Add(p2);
             //basket02.Cart.Add(p3);
-            //context.Add(basket01);
-            //context.Add(basket02);
 
+            //service.AddBasket("toulkas@gmail.com", basket01);
+            //service.AddBasket("toulkas@gmail.com", basket02);
+
+            ////delete basket from a customer
+            //service.DeleteBasket("toulkas@gmail.com", basket01.BasketId);
+
+            ////new customers
+
+            //Console.WriteLine(service.GetRecentCustomers());
+
+
+
+
+            //    var context = new OrderManagmentDbContext();
+            //    var baskets = context.Set<Basket>().Include(b => b.Cart).First();
+            //    context.Remove(baskets.Cart.First());
+            //    var totalAmount = context.Set<Product>()
+            //        .Where(p => p.Category==ProductCategoryId.Shoes)
+            //        .Sum(p=> p.Price);
+            //    Console.WriteLine(totalAmount);
+            //var Products = context.Set<Product>().ToList();
+            // var baskets = context.Set<Basket>().Include(b => b.Cart).ToList();
+            //foreach (var p in Products)
+            //{
+            //    Console.WriteLine(p);
+            //}
             //basket.Cart.Add(
             //    new Product()
             //    {
@@ -64,9 +82,7 @@ namespace BasketManagment
             //        Category = ProductCategoryId.Shirt,
             //        Price = 15M
             //    });
-
-
-           // context.SaveChanges();
+            // context.SaveChanges();
         }
-    }
+}
 }
