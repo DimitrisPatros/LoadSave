@@ -15,7 +15,7 @@ namespace BasketManagment
         public DateTime Dob { get; set; }
         public DateTime RegisterDay { get; set; }
         //public List<int> Baskets { get; set; }
-        public CustomerBaskets Baskets { get; set; }
+        //public CustomerBaskets Baskets { get; set; }
 
         public Customer(string email, string name, string address, bool isActive, DateTime dob) //: this(email, name)
         {
@@ -27,7 +27,7 @@ namespace BasketManagment
             // Baskets = new List<int>();
             //when we register a new customer we set that this customer is active and that he registger today
             RegisterDay = DateTime.Today;
-            IsActive = true;
+            IsActive = isActive;
         }
 
         public Customer(string name, string email)

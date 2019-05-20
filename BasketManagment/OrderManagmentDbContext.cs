@@ -1,18 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BasketManagment
 {
     class OrderManagmentDbContext : DbContext
     {
-        internal readonly object customer;
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseSqlServer(@"Server = localhost;Database=OrderManagment; Trusted_Connection = True; ConnectRetryCount = 0;");
+                .UseSqlServer(@"Server = localhost;Database=OrderManagment02; Trusted_Connection = True; ConnectRetryCount = 0;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,7 +21,7 @@ namespace BasketManagment
             modelBuilder.Entity<Basket>();
             modelBuilder.Entity<Product>();
             modelBuilder.Entity<Customer>().HasIndex(u => u.Name).IsUnique();
-            modelBuilder.Entity<CustomerBaskets>();
+
 
         }
     }

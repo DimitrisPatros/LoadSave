@@ -7,7 +7,7 @@ namespace BasketManagment
     {
         bool Register(string email, string name, string address, DateTime birthDate);
 
-        bool Update(string email, string name, string address, DateTime birthDate,bool status,string newEmail);
+        bool Update(string email, string name, string address, DateTime birthDate,bool status);
 
         bool Delete(string email);
 

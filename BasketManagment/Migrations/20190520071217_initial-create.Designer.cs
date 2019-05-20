@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BasketManagment.Migrations
 {
     [DbContext(typeof(OrderManagmentDbContext))]
-    [Migration("20190516130154_initial-create")]
+    [Migration("20190520071217_initial-create")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,36 @@ namespace BasketManagment.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CustomerBelong");
+
                     b.HasKey("BasketId");
 
-                    b.ToTable("Basket");
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("BasketManagment.Customer", b =>
+                {
+                    b.Property<string>("Email")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(150);
+
+                    b.Property<string>("Address");
+
+                    b.Property<DateTime>("Dob");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime>("RegisterDay");
+
+                    b.HasKey("Email");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("[Name] IS NOT NULL");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("BasketManagment.Product", b =>
@@ -50,7 +77,7 @@ namespace BasketManagment.Migrations
 
                     b.HasIndex("BasketId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("BasketManagment.Product", b =>

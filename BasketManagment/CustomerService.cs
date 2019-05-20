@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BasketManagment
 {
@@ -14,12 +13,13 @@ namespace BasketManagment
                 using (var context = new OrderManagmentDbContext())
                 {
                     var query = context.Set<Customer>().SingleOrDefault(c => c.Email == email);
-                    if (query != null)
+                    var basketquery = context.Set<Basket>().SingleOrDefault(b => b.BasketId == basket.BasketId);
+                    if (query != null && basketquery!= null)
                     {
-                        query.Baskets.BasketsId.Add(basket);
-                        context.Add(basket);
+                        basketquery.CustomerBelong = email;
                         context.SaveChanges();
                     }
+
                     return true;
                 }
             }
@@ -66,8 +66,9 @@ namespace BasketManagment
                     var query = context.Set<Customer>().SingleOrDefault(c => c.Email == email);
                     if (query != null)
                     {
+                        //var basketquery = context.Set<Basket>().SingleOrDefault(b => b.BasketId == basket.BasketId);
                         var basketRemover = context.Set<Basket>().SingleOrDefault(b => b.BasketId == basketId);
-                        query.Baskets.BasketsId.Remove(basketRemover);
+                        basketRemover.CustomerBelong = null;
                         context.Remove(basketRemover);
                         context.SaveChanges();
                     }
@@ -88,6 +89,7 @@ namespace BasketManagment
                 var customerList = new List<Customer>();
                 customerList = context.Set<Customer>()
                     .Where(t=>t.RegisterDay.AddDays(30)>=DateTime.Today)
+                    .Where(t=>t.IsActive==true)
                     .ToList();
                 //this return all the customer that have been registered the last month
                 return customerList;
@@ -99,13 +101,14 @@ namespace BasketManagment
         {
             using (var context = new OrderManagmentDbContext())
             {
-                context.Add(new Customer(email, name, address, true, birthDate));
+                var newCustomer = new Customer(email, name, address, true, birthDate);
+                context.Add(newCustomer);
                 context.SaveChanges();
                 return true;
             }
         }
 
-        public bool Update(string email, string name, string address, DateTime birthDate,bool status,string newEmail)
+        public bool Update(string email, string name, string address, DateTime birthDate,bool status)
         {
             try
             {
@@ -114,7 +117,7 @@ namespace BasketManagment
                     var query = context.Set<Customer>().SingleOrDefault(c => c.Email == email);
                     if (query != null)
                     {
-                        query.Email = newEmail;
+                        query.Email = email;
                         query.Name = name;
                         query.Address = address;
                         query.Dob = birthDate;

@@ -11,11 +11,11 @@ namespace BasketManagment
             var service = new CustomerService();
 
             //register new customers
-            var customer01 = service.Register("talou@hotmail.com", "toulk", "tade efi",new DateTime(1978, 5, 25));
-            var customer02 = service.Register("mpampis@hotmail.com", "Mpampis", "Marousi", new DateTime(1996, 8, 2));
-            Console.ReadLine();
+            //var customer01 = service.Register("talou@hotmail.com", "toulk", "tade efi",new DateTime(1978, 5, 25));
+            //var customer02 = service.Register("mpampis@hotmail.com", "Mpampis", "Marousi", new DateTime(1996, 8, 2));
+
             ////update current customers
-            //service.Update("talou@hotmail.com", "toulkas", "kifisia", new DateTime(1978, 5, 25), true,"toulkas@gmail.com");
+            //service.Update("talou@hotmail.com", "toulkas", "kifisia", new DateTime(1978, 5, 25), true);
 
             ////delete customer
             //service.Delete("mpampis@hotmail.com");
@@ -48,16 +48,23 @@ namespace BasketManagment
             //basket02.Cart.Add(p1);
             //basket02.Cart.Add(p2);
             //basket02.Cart.Add(p3);
+            //var context = new OrderManagmentDbContext();
+            //context.Add(basket01);
+            //context.Add(basket02);
+            //context.SaveChanges();
 
-            //service.AddBasket("toulkas@gmail.com", basket01);
-            //service.AddBasket("toulkas@gmail.com", basket02);
+            //service.AddBasket("talou@hotmail.com", basket01);
+            //service.AddBasket("talou@hotmail.com", basket02);
 
             ////delete basket from a customer
-            //service.DeleteBasket("toulkas@gmail.com", basket01.BasketId);
+            //service.DeleteBasket("talou@hotmail.com", 1);
 
             ////new customers
 
-            //Console.WriteLine(service.GetRecentCustomers());
+            //foreach (var customer in service.GetRecentCustomers())
+            //{
+            //    Console.WriteLine(customer);
+            //}
 
 
 
@@ -83,6 +90,7 @@ namespace BasketManagment
             //        Price = 15M
             //    });
             // context.SaveChanges();
+            Console.ReadLine();
         }
-}
+    }
 }
